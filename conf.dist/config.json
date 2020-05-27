@@ -1,0 +1,7 @@
+{
+  "bin": "vendor/mbo/satis-gitlab/bin/satis-gitlab",
+  "config_file": "data/satis.json",
+  "output": "public",
+  "gitlab_url": "",
+  "gitlab_token": ""
+}

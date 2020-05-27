@@ -1,0 +1,8 @@
+/vendor/
+/tests/_output/
+/tests/_support/_generated/
+/.php_cs.cache
+/data/
+
+# Always keep .gitkeep files
+!/**/.gitkeep
