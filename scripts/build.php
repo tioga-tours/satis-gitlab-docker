@@ -4,7 +4,7 @@ if ((require 'prepend.php') === true):
         . ' ' . getcwd() . '/' . $settings->config_file
         . ' ' . getcwd() . '/' . $settings->output;
 
-    foreach (($_GET['package'] ?? []) as $package) {
+    foreach (($_GET['package'] ?? $_GET['packages'] ?? []) as $package) {
         $cmd .= ' ' . $package;
     }
 
