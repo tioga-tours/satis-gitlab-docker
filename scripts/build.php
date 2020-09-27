@@ -4,7 +4,8 @@ if ((require 'prepend.php') === true):
         . ' ' . getcwd() . '/' . $settings->config_file
         . ' ' . getcwd() . '/' . $settings->output;
 
-    foreach (($_GET['package'] ?? $_GET['packages'] ?? []) as $package) {
+	$packages = ($_GET['package'] ?? $_GET['packages'] ?? []);
+    foreach ($packages as $package) {
         $cmd .= ' ' . $package;
     }
 
@@ -15,7 +16,10 @@ if ((require 'prepend.php') === true):
     $output .= '<hr>';
 
     if (($_GET['exec'] ?? '') === '1') {
-        echo 'Processing... you can speed it up by specifying packages<br/><pre>';
+		echo $output;
+		if (count($packages) === 0) {
+			echo 'Processing... you can speed it up by specifying packages<br/><pre>';
+		}
         ob_flush();
         flush();
 
