@@ -4,19 +4,21 @@ if ((require 'prepend.php') === true):
         . ' ' . getcwd() . '/' . $settings->config_file
         . ' ' . getcwd() . '/' . $settings->output;
 
-    foreach (($_GET['package'] ?? $_GET['packages'] ?? []) as $package) {
+	$packages = ($_GET['package'] ?? $_GET['packages'] ?? []);
+    foreach ($packages as $package) {
         $cmd .= ' ' . $package;
     }
 
     $title = 'Build | satis-gitlab';
-    $output .= '<h1>Building</h1>';
+    $output = ($output??'') . '<h1>Building</h1>';
 
     $output .= '<pre>Executing: ' . $cmd . PHP_EOL . '</pre>';
     $output .= '<hr>';
 
     if (($_GET['exec'] ?? '') === '1') {
-		if (true === empty($_GET['package'] ?? $_GET['packages'] ?? [])) {
-            echo 'Processing... you can speed it up by specifying packages<br/><pre>';
+		echo $output;
+		if (count($packages) === 0) {
+			echo 'Processing... you can speed it up by specifying packages<br/><pre>';
 		}
         ob_flush();
         flush();
