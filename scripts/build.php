@@ -15,7 +15,9 @@ if ((require 'prepend.php') === true):
     $output .= '<hr>';
 
     if (($_GET['exec'] ?? '') === '1') {
-        echo 'Processing... you can speed it up by specifying packages<br/><pre>';
+		if (true === empty($_GET['package'] ?? $_GET['packages'] ?? [])) {
+            echo 'Processing... you can speed it up by specifying packages<br/><pre>';
+		}
         ob_flush();
         flush();
 
