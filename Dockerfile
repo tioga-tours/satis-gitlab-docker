@@ -1,4 +1,4 @@
-FROM php:7.4-cli-alpine3.11
+FROM php:7.4-cli-alpine
 
 RUN mkdir -p /app/data && mkdir /app/public
 ADD ./conf.dist /app/conf.dist
