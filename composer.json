@@ -19,10 +19,5 @@
     "php": ">=7.4",
     "mbo/satis-gitlab": "~v0.2.0",
     "erusev/parsedown": "~1.7.4"
-  },
-  "require-dev": {
-    "phpmd/phpmd": "~2.6",
-    "friendsofphp/php-cs-fixer": "~2.16",
-    "squizlabs/php_codesniffer": "~3.3"
   }
 }
