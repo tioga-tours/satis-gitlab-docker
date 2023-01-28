@@ -16,10 +16,11 @@ if ((require 'prepend.php') === true):
     $output .= '<hr>';
 
     if (($_GET['exec'] ?? '') === '1') {
-		echo $output;
-		if (count($packages) === 0) {
-			echo 'Processing... you can speed it up by specifying packages<br/><pre>';
-		}
+        echo $output;
+        echo 'Run this command with ?exec=show to view full output, this process runs async<br/>';
+        if (count($packages) === 0) {
+            echo 'Processing... you can speed it up by specifying packages<br/>';
+        }
         ob_flush();
         flush();
 
@@ -27,6 +28,16 @@ if ((require 'prepend.php') === true):
         passthru($cmd);
         echo '</pre>';
         echo '<br/><br/><strong>DONE!</strong>';
+        die();
+    } elseif (($_GET['exec'] ?? '') === 'show') {
+        echo $output;
+        echo 'You can run this process async with ?exec=1<br/>';
+        ob_flush();
+        flush();
+
+        $execOutput = [];
+        exec('echo ' . $cmd . ' | at now');
+        echo '<br/><br/><strong>Process is running in the background, hopefully!</strong>';
         die();
     } else {
         $execUrl = $_SERVER['REQUEST_URI'];
