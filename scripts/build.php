@@ -25,9 +25,8 @@ if ((require 'prepend.php') === true):
         flush();
 
         $execOutput = [];
-        passthru($cmd);
-        echo '</pre>';
-        echo '<br/><br/><strong>DONE!</strong>';
+        exec('echo ' . $cmd . ' | at now');
+        echo '<br/><br/><strong>Process is running in the background, hopefully!</strong>';
         die();
     } elseif (($_GET['exec'] ?? '') === 'show') {
         echo $output;
@@ -36,8 +35,9 @@ if ((require 'prepend.php') === true):
         flush();
 
         $execOutput = [];
-        exec('echo ' . $cmd . ' | at now');
-        echo '<br/><br/><strong>Process is running in the background, hopefully!</strong>';
+        passthru($cmd);
+        echo '</pre>';
+        echo '<br/><br/><strong>DONE!</strong>';
         die();
     } else {
         $execUrl = $_SERVER['REQUEST_URI'];
