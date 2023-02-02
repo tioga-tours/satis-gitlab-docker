@@ -15,7 +15,7 @@ if ((require 'prepend.php') === true):
     $output .= '<pre>Executing: ' . $cmd . PHP_EOL . '</pre>';
     $output .= '<hr>';
 
-    if (($_GET['exec'] ?? '') === '1') {
+    /*if (($_GET['exec'] ?? '') === '1') {
         echo $output;
         echo 'Run this command with ?exec=show to view full output, this process runs async<br/>';
         if (count($packages) === 0) {
@@ -25,12 +25,14 @@ if ((require 'prepend.php') === true):
         flush();
 
         $execOutput = [];
-        exec('echo ' . $cmd . ' | at now');
+        exec('echo ' . $cmd . '&');
         echo '<br/><br/><strong>Process is running in the background, hopefully!</strong>';
         die();
-    } elseif (($_GET['exec'] ?? '') === 'show') {
+    } else*/if (($_GET['exec'] ?? '') === '1') {
         echo $output;
-        echo 'You can run this process async with ?exec=1<br/>';
+        if (count($packages) === 0) {
+            echo 'Processing... you can speed it up by specifying packages<br/>';
+        }
         ob_flush();
         flush();
 
